@@ -1,0 +1,10 @@
+<agm-map 
+  (mapReady)="mapReady($event)"
+  [latitude]='lat' 
+  [longitude]='lng'
+  [usePanning]='true'>
+  <agm-marker
+    [latitude]='lat'
+    [longitude]='lng'
+    (markerClick)='markerClicked(location)'></agm-marker>
+</agm-map>
