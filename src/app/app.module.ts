@@ -16,7 +16,6 @@ import { MapComponent } from './map/map.component';
     BrowserModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({
- 
     }),
   ],
   providers: [

@@ -3,8 +3,10 @@
   [latitude]='lat' 
   [longitude]='lng'
   [usePanning]='true'>
-  <agm-marker
-    [latitude]='lat'
-    [longitude]='lng'
-    (markerClick)='markerClicked(location)'></agm-marker>
-</agm-map>
+  <div *ngIf="posMap.size != 0">
+    <agm-marker  *ngFor="let userId of userIds"
+      [latitude]='posMap.get(userId).lat'
+      [longitude]='posMap.get(userId).lng'
+      (markerClick)='markerClicked($event)'>{{posMap[userId]}}</agm-marker>
+  </div>
+</agm-map>  
