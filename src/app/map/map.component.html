@@ -1,12 +1,30 @@
-<agm-map 
-  (mapReady)="mapReady($event)"
-  [latitude]='lat' 
-  [longitude]='lng'
-  [usePanning]='true'>
-  <div *ngIf="posMap.size != 0">
-    <agm-marker  *ngFor="let userId of userIds"
-      [latitude]='posMap.get(userId).lat'
-      [longitude]='posMap.get(userId).lng'
-      (markerClick)='markerClicked($event)'>{{posMap[userId]}}</agm-marker>
+<div fxLayout fxLayoutAlign="center center">
+  <div fxFlexFill id="outer">
+    <mat-toolbar color="primary">linkup</mat-toolbar>
+    <agm-map 
+      (mapReady)="mapReady($event)"
+      [latitude]='lat' 
+      [longitude]='lng'
+      [usePanning]='true'>
+      <div *ngIf="posMap.size != 0">
+        <agm-marker  *ngFor="let userId of userIds"
+          [latitude]='posMap.get(userId).lat'
+          [longitude]='posMap.get(userId).lng'
+          [iconUrl]="
+          {
+            url: getIconPath(userId),
+            scaledSize: {
+                width: 40,
+                height: 40
+            }
+          }"
+
+          (markerClick)='markerClicked($event, userId)'></agm-marker>
+      </div>
+    </agm-map>
+
+    <div *ngIf='userId == 0'>
+      <button style="margin: 5%" mat-raised-button color='primary' (click)="toggleButton()">Toggle Me</button>
+    </div>
   </div>
-</agm-map>  
+</div>

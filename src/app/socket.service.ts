@@ -6,14 +6,13 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class SocketService {
-  private url = 'https://linkup.localtunnel.me';
+  private url = 'localhost:3000';
   public socket: SocketIOClient.Socket;
   public userIdSubject = new BehaviorSubject<number>(null);
   constructor() {
     this.socket = io.connect(this.url);
     this.socket.on('userId', (userId: number) => {
       this.userIdSubject.next(userId);
-      console.log(userId);
     });
   }
 }
